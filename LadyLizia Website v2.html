@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LadyLizia — Interior Design & Ristrutturazioni · Roma</title>
+<meta name="description" content="LadyLizia S.r.l. — studio di interior design e ristrutturazioni chiavi in mano a Roma. Materiali nobili, cantieri certificati, soluzioni green. Cantieri aperti alle donne." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        hsl(220 22% 8%);
+    --bg-2:      hsl(220 24% 6%);
+    --bg-3:      hsl(220 20% 11%);
+    --fg:        hsl(30 22% 94%);
+    --fg-mute:   hsl(30 14% 72%);
+    --fg-dim:    hsl(30 8% 52%);
+    --primary:   hsl(18 90% 62%);
+    --secondary: hsl(320 50% 55%);
+    --accent:    hsl(35 90% 60%);
+    --card:      hsl(220 20% 12%);
+    --border:    hsl(220 14% 22%);
+    --border-soft: hsl(220 14% 16%);
+
+    --grad-brand: linear-gradient(135deg, hsl(320 50% 55%), hsl(18 90% 62%) 55%, hsl(35 90% 60%));
+    --grad-brand-soft: linear-gradient(135deg, hsl(320 50% 55% / .14), hsl(18 90% 62% / .14), hsl(35 90% 60% / .14));
+
+    --r-sm: 4px;
+    --r:    14px;
+    --r-lg: 28px;
+
+    --display: 'Fraunces', 'Playfair Display', Georgia, serif;
+    --text: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--text);
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.55;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(50% 30% at 12% 0%, hsl(320 50% 55% / .14), transparent 65%),
+      radial-gradient(45% 30% at 92% 8%, hsl(35 90% 60% / .10), transparent 65%);
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0;
+    pointer-events: none; z-index: 100;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .055; mix-blend-mode: overlay;
+  }
+
+  h1,h2,h3,h4 { font-family: var(--display); font-weight: 400; letter-spacing: -0.02em; margin: 0; line-height: 1.02; }
+  h1 em, h2 em, h3 em { font-style: italic; font-variation-settings: "opsz" 140; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 36px; position: relative; z-index: 1; }
+  .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); }
+  .grad-text { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 24px; border-radius: 999px;
+    font-family: var(--text); font-weight: 500; font-size: 14px;
+    letter-spacing: 0.01em; cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--grad-brand); color: #1a0f0a; font-weight: 600; box-shadow: 0 12px 36px -14px hsl(18 90% 62% / .55); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 50px -14px hsl(18 90% 62% / .7); }
+  .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+  .btn-ghost:hover { border-color: hsl(35 90% 60% / .55); background: hsl(35 90% 60% / .06); }
+  .btn-light { background: var(--fg); color: var(--bg-2); }
+  .btn-light:hover { transform: translateY(-2px); }
+
+  .arrow { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ===================== NAVBAR ===================== */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: hsl(220 24% 6% / .55);
+    backdrop-filter: saturate(160%) blur(20px);
+    -webkit-backdrop-filter: saturate(160%) blur(20px);
+    border-bottom: 1px solid hsl(220 14% 22% / .5);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 78px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-logo {
+    width: 44px; height: 44px; border-radius: 12px; overflow: hidden;
+    background: var(--bg-2);
+    border: 1px solid hsl(35 90% 60% / .2);
+  }
+  .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+  .brand-name {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: 22px; letter-spacing: -0.01em;
+  }
+  .brand-name b { font-weight: 500; font-style: normal; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nav-links { display: flex; align-items: center; gap: 38px; }
+  .nav-link {
+    font-size: 13.5px; color: var(--fg-mute); letter-spacing: 0.02em;
+    position: relative; padding: 4px 0; transition: color .2s ease;
+  }
+  .nav-link::after {
+    content: ""; position: absolute; left: 0; right: 100%; bottom: -3px; height: 1px;
+    background: var(--grad-brand); transition: right .3s ease;
+  }
+  .nav-link:hover { color: var(--fg); }
+  .nav-link:hover::after { right: 0; }
+  .nav-cta { display: flex; align-items: center; gap: 14px; }
+  .hamburger { display: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border); background: transparent; cursor: pointer; }
+  .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--fg); margin: 4px auto; }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 110px 0 0;
+    overflow: hidden;
+  }
+  .hero-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .hero-image-wrap {
+    position: relative;
+    aspect-ratio: 16/9.2;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid hsl(35 90% 60% / .18);
+  }
+  .hero-image-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transform: scale(1.06);
+    animation: kenBurns 22s ease-in-out infinite alternate;
+  }
+  @keyframes kenBurns {
+    0% { transform: scale(1.08) translate(0, 0); }
+    100% { transform: scale(1.14) translate(-1%, -1.5%); }
+  }
+  .hero-image-wrap::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, hsl(220 24% 6% / .35) 0%, transparent 30%, transparent 60%, hsl(220 24% 6% / .85) 100%),
+      linear-gradient(90deg, hsl(220 24% 6% / .55) 0%, transparent 50%);
+  }
+
+  .hero-eyebrow {
+    position: absolute; top: 40px; left: 40px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 9px 18px; border-radius: 999px;
+    background: hsl(220 24% 6% / .65); backdrop-filter: blur(12px);
+    border: 1px solid hsl(35 90% 60% / .35);
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+
+  .hero-title {
+    position: absolute;
+    left: 4%; right: 4%; bottom: 7%;
+    z-index: 2;
+    font-size: clamp(54px, 9.5vw, 168px);
+    line-height: .92;
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    color: var(--fg);
+    pointer-events: none;
+  }
+  .hero-title .ln { display: block; }
+  .hero-title .ln.r { text-align: right; }
+  .hero-title em { font-style: italic; font-variation-settings: "opsz" 144; font-weight: 300; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .hero-meta-row {
+    display: grid;
+    grid-template-columns: 1.3fr .9fr 1fr;
+    gap: 48px;
+    padding: 56px 8px 0;
+    align-items: end;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--fg-mute);
+    max-width: 460px;
+    line-height: 1.5;
+  }
+  .hero-sub strong { color: var(--fg); font-weight: 500; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-numbers { display: flex; flex-direction: column; gap: 10px; text-align: right; }
+  .hero-numbers .row { display: flex; justify-content: flex-end; align-items: baseline; gap: 14px; }
+  .hero-numbers .num { font-family: var(--display); font-size: 38px; font-weight: 400; letter-spacing: -0.02em; font-variation-settings: "opsz" 144; }
+  .hero-numbers .num em { font-style: italic; }
+  .hero-numbers .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); }
+
+  /* ===================== MARQUEE ===================== */
+  .marquee {
+    margin-top: 80px;
+    padding: 26px 0;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(180deg, transparent, hsl(220 24% 6% / .4), transparent);
+  }
+  .marquee-track {
+    display: flex; gap: 64px;
+    animation: marq 38s linear infinite;
+    width: max-content;
+    align-items: center;
+  }
+  .marquee-item {
+    display: flex; align-items: center; gap: 22px;
+    font-family: var(--display); font-style: italic; font-size: 30px; font-weight: 300;
+    color: var(--fg-mute);
+    white-space: nowrap;
+  }
+  .marquee-item .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--grad-brand); flex-shrink: 0; }
+  @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ===================== SECTION HEADER ===================== */
+  .section { padding: 130px 0; position: relative; }
+  .section-tag {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .section-tag .bar { width: 36px; height: 1px; background: var(--accent); }
+  .section-head { max-width: 880px; margin-bottom: 80px; }
+  .section-title { font-size: clamp(40px, 5.6vw, 88px); line-height: 1.0; margin-top: 24px; font-weight: 300; letter-spacing: -0.025em; }
+
+  /* ===================== SERVIZI ===================== */
+  .servizi-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+  .service {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+    padding: 40px 36px 36px;
+    overflow: hidden;
+    transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
+    min-height: 480px;
+    display: flex; flex-direction: column;
+  }
+  .service:hover {
+    transform: translateY(-6px);
+    border-color: hsl(18 90% 62% / .5);
+    box-shadow: 0 30px 70px -28px hsl(18 90% 62% / .4);
+  }
+  .service::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--grad-brand-soft);
+    opacity: 0; transition: opacity .4s ease; pointer-events: none;
+  }
+  .service:hover::before { opacity: 1; }
+  .service > * { position: relative; }
+
+  .service:nth-child(1) { grid-column: span 5; }
+  .service:nth-child(2) { grid-column: span 4; }
+  .service:nth-child(3) { grid-column: span 3; }
+
+  .service-num {
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 16px; color: var(--accent);
+    font-variation-settings: "opsz" 144;
+  }
+  .service-num::before { content: "—"; margin-right: 10px; opacity: .5; }
+  .service h3 {
+    font-size: clamp(32px, 3vw, 44px);
+    margin: 60px 0 16px;
+    font-weight: 400;
+  }
+  .service h3 em { font-style: italic; }
+  .service p { color: var(--fg-mute); font-size: 15px; line-height: 1.6; max-width: 420px; }
+  .service-features { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; gap: 12px; }
+  .service-features li { display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--fg-mute); }
+  .service-features li::before { content: ""; width: 14px; height: 1px; background: var(--accent); flex-shrink: 0; }
+
+  .service-foot { margin-top: auto; padding-top: 32px; display: flex; align-items: center; justify-content: space-between; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--fg); font-weight: 500;
+  }
+  .service-link svg { width: 16px; height: 16px; transition: transform .3s ease; }
+  .service:hover .service-link svg { transform: translateX(6px); }
+  .service-mark {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 1px solid hsl(35 90% 60% / .35);
+    display: grid; place-items: center;
+    font-family: var(--display); font-style: italic; font-size: 22px; color: var(--accent);
+    font-variation-settings: "opsz" 144;
+  }
+
+  /* ===================== PORTFOLIO (editorial mosaic) ===================== */
+  .portfolio { background: linear-gradient(180deg, transparent, hsl(220 26% 5%) 12%, hsl(220 26% 5%) 88%, transparent); }
+  .portfolio-head {
+    display: flex; justify-content: space-between; align-items: end; gap: 32px;
+    margin-bottom: 80px; flex-wrap: wrap;
+  }
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 80px;
+    gap: 24px;
+  }
+  .project {
+    position: relative;
+    border-radius: var(--r);
+    overflow: hidden;
+    cursor: pointer;
+    isolation: isolate;
+  }
+  .project img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter .6s ease;
+  }
+  .project:hover img { transform: scale(1.08); }
+  .project::after {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, transparent 40%, hsl(220 26% 5% / .92) 100%);
+    transition: background .4s ease;
+  }
+  .project:hover::after {
+    background: linear-gradient(180deg, hsl(320 50% 30% / .1) 0%, hsl(18 90% 35% / .35) 70%, hsl(220 26% 5% / .92) 100%);
+  }
+  .project-meta {
+    position: absolute; z-index: 2;
+    left: 28px; right: 28px; bottom: 24px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .project-cat { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  .project h3 {
+    font-family: var(--display); font-size: clamp(22px, 2vw, 36px); font-weight: 400; line-height: 1;
+  }
+  .project h3 em { font-style: italic; }
+  .project-extra { display: flex; gap: 18px; font-size: 12px; color: var(--fg-mute); margin-top: 6px; opacity: 0; transform: translateY(8px); transition: all .3s ease; }
+  .project-extra span::before { content: "·"; margin-right: 18px; opacity: .4; }
+  .project-extra span:first-child::before { content: ""; margin: 0; }
+  .project:hover .project-extra { opacity: 1; transform: none; }
+
+  .project-num {
+    position: absolute; top: 22px; left: 28px; z-index: 2;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; color: var(--fg);
+  }
+  .project-arrow {
+    position: absolute; top: 22px; right: 22px; z-index: 2;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: hsl(220 24% 6% / .7); backdrop-filter: blur(10px);
+    border: 1px solid hsl(35 90% 60% / .3);
+    display: grid; place-items: center;
+    transition: all .35s ease;
+  }
+  .project-arrow svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke .3s ease; }
+  .project:hover .project-arrow { background: var(--grad-brand); border-color: transparent; transform: rotate(-45deg); }
+  .project:hover .project-arrow svg { stroke: var(--bg-2); }
+
+  /* mosaic slots */
+  .project.p1 { grid-column: span 7; grid-row: span 7; }   /* dining hero */
+  .project.p2 { grid-column: span 5; grid-row: span 4; }   /* kitchen */
+  .project.p3 { grid-column: span 5; grid-row: span 3; }   /* fireplace */
+  .project.p4 { grid-column: span 4; grid-row: span 6; }   /* bath green */
+  .project.p5 { grid-column: span 4; grid-row: span 6; }   /* games */
+  .project.p6 { grid-column: span 4; grid-row: span 6; }   /* bath leaf */
+
+  .portfolio-foot { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 56px; flex-wrap: wrap; padding-top: 36px; border-top: 1px solid var(--border-soft); }
+  .portfolio-foot p { color: var(--fg-mute); max-width: 520px; }
+  .portfolio-foot p em { font-family: var(--display); font-style: italic; color: var(--fg); }
+
+  /* ===================== PROCESS ===================== */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    counter-reset: step;
+  }
+  .step {
+    position: relative;
+    padding: 32px 28px 36px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+    background: hsl(220 22% 9%);
+    min-height: 280px;
+    display: flex; flex-direction: column;
+    transition: border-color .3s ease, transform .3s ease;
+  }
+  .step:hover { border-color: hsl(35 90% 60% / .4); transform: translateY(-4px); }
+  .step-num {
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 64px; line-height: 1;
+    font-variation-settings: "opsz" 144;
+    background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: 24px;
+  }
+  .step h4 { font-family: var(--display); font-size: 26px; font-weight: 400; margin-bottom: 12px; }
+  .step h4 em { font-style: italic; }
+  .step p { color: var(--fg-mute); font-size: 14px; line-height: 1.6; }
+  .step .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-top: auto; padding-top: 24px; }
+
+  /* ===================== ABOUT ===================== */
+  .about-stage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-visual { position: relative; }
+  .about-photo {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.15) contrast(1.02); }
+  .about-photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(160deg, hsl(320 50% 55% / .12), transparent 40%, hsl(18 90% 62% / .14));
+    mix-blend-mode: overlay;
+  }
+  .about-overlay {
+    position: absolute; right: -36px; bottom: -36px;
+    width: 240px;
+    background: hsl(220 24% 6% / .92); backdrop-filter: blur(14px);
+    border: 1px solid hsl(35 90% 60% / .3);
+    border-radius: var(--r);
+    padding: 24px;
+  }
+  .about-overlay .signature {
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 36px; line-height: 1;
+    background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-variation-settings: "opsz" 144;
+  }
+  .about-overlay .role { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-top: 14px; }
+
+  .about-tag {
+    position: absolute; top: 32px; left: -32px;
+    transform: rotate(-90deg); transform-origin: left top;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+  }
+  .about-tag::before { content: "— "; }
+
+  .about-content { padding-right: 24px; }
+  .about-content h2 { font-size: clamp(36px, 4.4vw, 64px); margin: 24px 0 32px; font-weight: 300; }
+  .about-content h2 em { font-style: italic; }
+  .about-content > p { color: var(--fg-mute); font-size: 16.5px; line-height: 1.7; margin-bottom: 22px; }
+
+  .quote-card {
+    margin: 36px 0;
+    padding: 32px 36px;
+    border-left: 2px solid;
+    border-image: var(--grad-brand) 1;
+    background: linear-gradient(90deg, hsl(35 90% 60% / .06), transparent);
+  }
+  .quote-card p {
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 24px; line-height: 1.35; color: var(--fg);
+    font-variation-settings: "opsz" 144;
+  }
+  .quote-card .who { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-top: 18px; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 48px; padding-top: 36px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .stat .num {
+    font-family: var(--display); font-size: 56px; font-weight: 300; line-height: 1;
+    font-variation-settings: "opsz" 144;
+  }
+  .stat .num em { font-style: italic; }
+  .stat .num .g { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-top: 14px; }
+
+  /* ===================== VALUES STRIPE ===================== */
+  .values {
+    padding: 90px 0;
+    background: linear-gradient(180deg, transparent, hsl(220 26% 5%) 40%, hsl(220 26% 5%) 60%, transparent);
+  }
+  .values-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  }
+  .value {
+    padding: 0 40px;
+    border-left: 1px solid var(--border-soft);
+  }
+  .value:first-child { padding-left: 0; border-left: none; }
+  .value:last-child { padding-right: 0; }
+  .value .icon {
+    width: 44px; height: 44px;
+    display: grid; place-items: center; margin-bottom: 26px;
+    border-radius: 50%;
+    background: hsl(35 90% 60% / .08);
+    border: 1px solid hsl(35 90% 60% / .3);
+  }
+  .value .icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .value h4 { font-family: var(--display); font-size: 26px; font-weight: 400; margin-bottom: 12px; }
+  .value h4 em { font-style: italic; }
+  .value p { color: var(--fg-mute); font-size: 14.5px; line-height: 1.6; }
+
+  /* ===================== CTA BANNER ===================== */
+  .cta-banner {
+    margin: 80px 0;
+    position: relative;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid hsl(35 90% 60% / .35);
+    aspect-ratio: 16/7;
+    min-height: 400px;
+  }
+  .cta-banner img { width: 100%; height: 100%; object-fit: cover; }
+  .cta-banner::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, hsl(220 24% 6% / .9) 0%, hsl(220 24% 6% / .55) 50%, hsl(220 24% 6% / .15) 100%),
+      linear-gradient(135deg, hsl(320 50% 25% / .25), transparent 60%, hsl(18 90% 35% / .25));
+  }
+  .cta-banner-inner {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 64px 80px;
+    max-width: 800px;
+  }
+  .cta-banner h2 { font-size: clamp(40px, 5vw, 72px); font-weight: 300; line-height: 1; margin-bottom: 24px; }
+  .cta-banner h2 em { font-style: italic; }
+  .cta-banner p { color: var(--fg-mute); font-size: 17px; max-width: 540px; margin-bottom: 36px; }
+  .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ===================== CONTACT ===================== */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+    padding: 36px 32px 32px;
+    display: flex; flex-direction: column; min-height: 280px;
+    transition: border-color .3s ease, transform .3s ease;
+  }
+  .contact-card:hover { transform: translateY(-4px); border-color: hsl(320 50% 55% / .4); }
+  .contact-card .icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid hsl(320 50% 55% / .35);
+    background: hsl(320 50% 55% / .08);
+    display: grid; place-items: center; margin-bottom: 28px;
+  }
+  .contact-card .icon svg { width: 18px; height: 18px; stroke: var(--secondary); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .contact-card .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-bottom: 14px; }
+  .contact-card h3 { font-family: var(--display); font-size: 24px; font-weight: 400; margin-bottom: 10px; }
+  .contact-card h3 em { font-style: italic; }
+  .contact-card .val { font-size: 15px; color: var(--fg); margin-bottom: 4px; }
+  .contact-card .hint { font-size: 13px; color: var(--fg-dim); }
+  .contact-card a.link {
+    margin-top: auto; padding-top: 24px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .contact-card a.link svg { width: 14px; height: 14px; transition: transform .3s; }
+  .contact-card:hover a.link svg { transform: translateX(4px); }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    background: var(--bg-2);
+    border-top: 1px solid hsl(35 90% 60% / .2);
+    padding: 100px 0 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-mega {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(64px, 14vw, 240px); line-height: .85;
+    letter-spacing: -0.04em;
+    margin-bottom: 80px;
+    background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    padding-bottom: 20px;
+    font-variation-settings: "opsz" 144;
+  }
+  .footer-mega em { font-style: italic; }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 56px; border-bottom: 1px solid var(--border-soft);
+  }
+  .footer-brand p { color: var(--fg-mute); font-size: 14.5px; margin-top: 24px; max-width: 360px; line-height: 1.6; }
+  .footer-col h5 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col a { font-size: 14.5px; color: var(--fg-mute); transition: color .2s ease; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 28px; flex-wrap: wrap; gap: 16px;
+  }
+  .socials { display: flex; gap: 10px; }
+  .social {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--border); display: grid; place-items: center;
+    transition: border-color .2s, background .2s;
+  }
+  .social svg { width: 16px; height: 16px; stroke: var(--fg-mute); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .social:hover { border-color: hsl(35 90% 60% / .55); background: hsl(35 90% 60% / .07); }
+  .social:hover svg { stroke: var(--accent); }
+
+  /* ===================== Reveal ===================== */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ===================== Responsive ===================== */
+  @media (max-width: 1100px) {
+    .servizi-grid > .service { grid-column: span 6 !important; }
+    .servizi-grid > .service:last-child { grid-column: span 12 !important; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .mosaic { grid-auto-rows: 60px; }
+    .project.p1 { grid-column: span 12; grid-row: span 6; }
+    .project.p2, .project.p3, .project.p4, .project.p5, .project.p6 { grid-column: span 6; grid-row: span 5; }
+  }
+  @media (max-width: 760px) {
+    .container { padding: 0 22px; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .nav-cta .btn { display: none; }
+    .hero { padding: 100px 0 0; }
+    .hero-image-wrap { aspect-ratio: 3/4.2; }
+    .hero-eyebrow { top: 20px; left: 20px; padding: 7px 14px; font-size: 9.5px; }
+    .hero-title { left: 6%; right: 6%; bottom: 6%; font-size: 56px; }
+    .hero-meta-row { grid-template-columns: 1fr; gap: 32px; padding: 40px 4px 0; }
+    .hero-numbers { text-align: left; }
+    .hero-numbers .row { justify-content: flex-start; }
+    .marquee-item { font-size: 22px; }
+    .section { padding: 90px 0; }
+    .servizi-grid > .service { grid-column: span 12 !important; min-height: 0; }
+    .servizi-grid { gap: 18px; }
+    .process-grid { grid-template-columns: 1fr; }
+    .about-stage { grid-template-columns: 1fr; gap: 80px; }
+    .about-content { padding-right: 0; }
+    .about-tag { display: none; }
+    .about-overlay { right: 16px; bottom: -24px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .value { padding: 32px 0; border-left: none; border-top: 1px solid var(--border-soft); }
+    .value:first-child { border-top: none; padding-top: 0; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .cta-banner-inner { padding: 36px 28px; }
+    .cta-banner { aspect-ratio: auto; min-height: 460px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .mosaic { grid-auto-rows: 56px; gap: 16px; }
+    .project.p1, .project.p2, .project.p3, .project.p4, .project.p5, .project.p6 { grid-column: span 12; grid-row: span 4; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-logo"><img src="assets/logo-mark.jpg" alt="LadyLizia mark" /></div>
+      <div class="brand-name"><em>lady</em><b>lizia</b></div>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#home">Home</a>
+      <a class="nav-link" href="#servizi">Servizi</a>
+      <a class="nav-link" href="#progetti">Progetti</a>
+      <a class="nav-link" href="#processo">Processo</a>
+      <a class="nav-link" href="#chi-siamo">Chi Siamo</a>
+      <a class="nav-link" href="#contatti">Contatti</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contatti" class="btn btn-primary">
+        Richiedi Preventivo
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="container hero-stage">
+    <div class="hero-image-wrap reveal">
+      <img src="assets/project-dining.jpg" alt="Interno di lusso firmato LadyLizia · sala da pranzo" />
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Interior Studio · Roma · est. 2018
+      </div>
+      <h1 class="hero-title">
+        <span class="ln">Trasformiamo i tuoi</span>
+        <span class="ln r"><em>spazi</em> in emozioni.</span>
+      </h1>
+    </div>
+
+    <div class="hero-meta-row">
+      <p class="hero-sub reveal">
+        <strong>Interior design e ristrutturazioni chiavi in mano.</strong>
+        Un'unica regia dal primo schizzo alla consegna delle chiavi —
+        materiali nobili, cantieri certificati, soluzioni green.
+      </p>
+      <div class="hero-ctas reveal" style="transition-delay:.1s">
+        <a href="#progetti" class="btn btn-primary">
+          Scopri i Progetti
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#contatti" class="btn btn-ghost">Contattaci</a>
+      </div>
+      <div class="hero-numbers reveal" style="transition-delay:.2s">
+        <div class="row"><span class="num grad-text">387<em>+</em></span><span class="lbl">Progetti firmati</span></div>
+        <div class="row"><span class="num grad-text">15<em>·</em></span><span class="lbl">Anni di mestiere</span></div>
+        <div class="row"><span class="num grad-text">6.4<em>k</em></span><span class="lbl">Follower @ladylizia</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-item">Interior Design <span class="dot"></span></span>
+      <span class="marquee-item">Ristrutturazioni chiavi in mano <span class="dot"></span></span>
+      <span class="marquee-item">Progetti Green <span class="dot"></span></span>
+      <span class="marquee-item">Cantieri aperti alle donne <span class="dot"></span></span>
+      <span class="marquee-item">Made in Roma <span class="dot"></span></span>
+      <span class="marquee-item">Interior Design <span class="dot"></span></span>
+      <span class="marquee-item">Ristrutturazioni chiavi in mano <span class="dot"></span></span>
+      <span class="marquee-item">Progetti Green <span class="dot"></span></span>
+      <span class="marquee-item">Cantieri aperti alle donne <span class="dot"></span></span>
+      <span class="marquee-item">Made in Roma <span class="dot"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVIZI ============ -->
+<section class="section" id="servizi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="bar"></span>Servizi · 01 / 02 / 03</div>
+      <h2 class="section-title">Tutto, dall'<em>idea</em><br/>alla consegna delle chiavi.</h2>
+    </div>
+
+    <div class="servizi-grid">
+
+      <article class="service reveal">
+        <div class="service-num">Servizio <em>01</em></div>
+        <h3><em>Interior</em> Design</h3>
+        <p>Progettazione su misura per case, uffici e spazi commerciali. Concept, moodboard, render fotorealistici, scelta arredi e direzione artistica fino all'ultimo dettaglio.</p>
+        <ul class="service-features">
+          <li>Sopralluogo &amp; brief in studio</li>
+          <li>Moodboard e render 3D fotorealistici</li>
+          <li>Selezione arredi, tessuti e materiali</li>
+          <li>Direzione artistica in cantiere</li>
+        </ul>
+        <div class="service-foot">
+          <a href="#contatti" class="service-link">
+            Approfondisci
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <div class="service-mark">id</div>
+        </div>
+      </article>
+
+      <article class="service reveal" style="transition-delay:.08s">
+        <div class="service-num">Servizio <em>02</em></div>
+        <h3>Ristrutturazioni<br/><em>chiavi in mano</em></h3>
+        <p>Un unico referente dal cantiere alla consegna. Demolizioni, impianti, finiture, pratiche edilizie — gestiamo tutto noi, con preventivo trasparente e date garantite.</p>
+        <ul class="service-features">
+          <li>Preventivo fisso e trasparente</li>
+          <li>Cantiere certificato e assicurato</li>
+          <li>Date di consegna garantite</li>
+        </ul>
+        <div class="service-foot">
+          <a href="#contatti" class="service-link">
+            Approfondisci
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <div class="service-mark">rs</div>
+        </div>
+      </article>
+
+      <article class="service reveal" style="transition-delay:.16s">
+        <div class="service-num">Servizio <em>03</em></div>
+        <h3>Progetti<br/><em>Green</em></h3>
+        <p>Materiali ecosostenibili, classe A+, gestione dei bonus fiscali. Una scelta concreta, non uno slogan.</p>
+        <ul class="service-features">
+          <li>Materiali certificati a km 0</li>
+          <li>Efficienza energetica A+</li>
+          <li>Bonus &amp; pratiche incluse</li>
+        </ul>
+        <div class="service-foot">
+          <a href="#contatti" class="service-link">
+            Approfondisci
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <div class="service-mark">gn</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="section portfolio" id="progetti">
+  <div class="container">
+    <div class="portfolio-head reveal">
+      <div>
+        <div class="section-tag"><span class="bar"></span>Portfolio · Roma &amp; Lazio</div>
+        <h2 class="section-title" style="max-width:900px">Progetti recenti,<br/><em>firmati LadyLizia.</em></h2>
+      </div>
+      <a href="#" class="btn btn-ghost">
+        Vedi tutti
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="mosaic">
+
+      <article class="project p1 reveal">
+        <img src="assets/project-dining.jpg" alt="Sala da pranzo · Parioli" />
+        <span class="project-num">N° 01 / 24</span>
+        <a class="project-arrow" href="#"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="project-meta">
+          <span class="project-cat">Residenziale · Sala da pranzo</span>
+          <h3>Maison <em>Parioli</em></h3>
+          <div class="project-extra">
+            <span>180 m²</span><span>Marmo &amp; cuoio</span><span>Roma · 2025</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project p2 reveal" style="transition-delay:.06s">
+        <img src="assets/project-kitchen.jpg" alt="Cucina contemporanea" />
+        <span class="project-num">N° 02</span>
+        <a class="project-arrow" href="#"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="project-meta">
+          <span class="project-cat">Cucina · Custom</span>
+          <h3>Cucina <em>Contemporanea</em></h3>
+          <div class="project-extra">
+            <span>32 m²</span><span>Rovere &amp; marmo</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project p3 reveal" style="transition-delay:.12s">
+        <img src="assets/project-fireplace.jpg" alt="Living con camino in marmo" />
+        <span class="project-num">N° 03</span>
+        <a class="project-arrow" href="#"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="project-meta">
+          <span class="project-cat">Living · Classico</span>
+          <h3>Suite <em>Bouclé</em></h3>
+          <div class="project-extra">
+            <span>54 m²</span><span>Marmo Calacatta</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project p4 reveal" style="transition-delay:.18s">
+        <img src="assets/project-bath-green.jpg" alt="Bagno con marmo verde" />
+        <span class="project-num">N° 04</span>
+        <a class="project-arrow" href="#"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="project-meta">
+          <span class="project-cat">Bagno · Wellness</span>
+          <h3>Bagno <em>Smeraldo</em></h3>
+          <div class="project-extra">
+            <span>14 m²</span><span>Marmo verde &amp; ottone</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project p5 reveal" style="transition-delay:.24s">
+        <img src="assets/project-games.jpg" alt="Sala giochi con biliardo" />
+        <span class="project-num">N° 05</span>
+        <a class="project-arrow" href="#"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="project-meta">
+          <span class="project-cat">Loft · Lifestyle</span>
+          <h3>Lounge <em>Industriale</em></h3>
+          <div class="project-extra">
+            <span>46 m²</span><span>Mattone &amp; metallo</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project p6 reveal" style="transition-delay:.3s">
+        <img src="assets/project-bath-leaf.jpg" alt="Bagno botanico con carta da parati" />
+        <span class="project-num">N° 06</span>
+        <a class="project-arrow" href="#"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="project-meta">
+          <span class="project-cat">Bagno · Botanico</span>
+          <h3>Bagno <em>Tropicale</em></h3>
+          <div class="project-extra">
+            <span>9 m²</span><span>Wallpaper custom</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="portfolio-foot reveal">
+      <p>Ogni progetto è un dialogo. Studiamo la luce, le abitudini, i materiali — e cuciamo la casa addosso a chi ci vive.<br/><em>Cliccate per leggere le storie complete.</em></p>
+      <a href="#" class="btn btn-ghost">
+        Archivio progetti
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section" id="processo" style="padding-top: 60px">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="bar"></span>Il nostro metodo</div>
+      <h2 class="section-title">Dal primo <em>caffè</em><br/>alla consegna delle chiavi.</h2>
+    </div>
+
+    <div class="process-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h4><em>Ascolto</em></h4>
+        <p>Iniziamo da un caffè — in studio o a casa vostra. Capiamo abitudini, gusti, sogni e budget. Nessun preventivo prima di averti ascoltato.</p>
+        <div class="tag">— Settimana 1</div>
+      </div>
+      <div class="step reveal" style="transition-delay:.08s">
+        <div class="step-num">02</div>
+        <h4><em>Progetto</em></h4>
+        <p>Concept, moodboard, render 3D fotorealistici e capitolato dei materiali. Si decide insieme, poi si firma il preventivo fisso.</p>
+        <div class="tag">— Settimane 2 / 4</div>
+      </div>
+      <div class="step reveal" style="transition-delay:.16s">
+        <div class="step-num">03</div>
+        <h4><em>Cantiere</em></h4>
+        <p>Apertura cantiere certificato, una squadra unica, direzione artistica costante. Reportistica settimanale con foto e avanzamento.</p>
+        <div class="tag">— Mesi 1 / 4</div>
+      </div>
+      <div class="step reveal" style="transition-delay:.24s">
+        <div class="step-num">04</div>
+        <h4><em>Consegna</em></h4>
+        <p>Allestimento finale, profumazione d'ambiente, fotografia professionale. Vi consegniamo le chiavi e una casa pronta da vivere.</p>
+        <div class="tag">— Day Zero</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="chi-siamo">
+  <div class="container">
+    <div class="about-stage">
+      <div class="about-visual reveal">
+        <div class="about-tag">— founder · Bianca</div>
+        <div class="about-photo">
+          <img src="assets/project-fireplace.jpg" alt="Atelier LadyLizia · scorcio interno" />
+        </div>
+        <div class="about-overlay">
+          <div class="signature">Bianca.</div>
+          <div class="role">Founder · Arredatrice · Capo cantiere</div>
+        </div>
+      </div>
+
+      <div class="about-content reveal" style="transition-delay:.12s">
+        <div class="section-tag"><span class="bar"></span>Chi siamo</div>
+        <h2>Una <em>casa</em> non si arreda.<br/>Si <em>racconta</em>.</h2>
+        <p>LadyLizia nasce dall'incontro fra l'occhio di un'arredatrice e le mani di un'impresa edile. Bianca, founder, ha unito le due anime in un'unica regia: dal primo schizzo alla consegna delle chiavi, sotto un solo tetto.</p>
+
+        <div class="quote-card">
+          <p>“Vogliamo cantieri aperti alle donne. Il design è un mestiere di cura — e la cura non ha genere.”</p>
+          <div class="who">— Bianca, founder</div>
+        </div>
+
+        <p>Crediamo nei materiali nobili, nei tempi rispettati e nell'ecosostenibilità come scelta concreta — non come slogan. Lavoriamo a Roma e in tutto il Lazio, con qualche puntata fuori porta per i clienti che ce lo chiedono.</p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="num"><span class="g">387</span><em>+</em></div>
+            <div class="lbl">Progetti firmati</div>
+          </div>
+          <div class="stat">
+            <div class="num"><span class="g">6,4</span><em>k</em></div>
+            <div class="lbl">Community IG</div>
+          </div>
+          <div class="stat">
+            <div class="num"><span class="g">100</span><em>%</em></div>
+            <div class="lbl">Passione</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
+<section class="values">
+  <div class="container">
+    <div class="values-grid">
+      <div class="value reveal">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2c4 6 7 9 7 13a7 7 0 1 1-14 0c0-4 3-7 7-13z"/></svg>
+        </div>
+        <h4><em>Ecosostenibilità</em>, sul serio.</h4>
+        <p>Materiali certificati, fornitori a km 0, gestione dei bonus fiscali. Le scelte green sono nella nostra checklist tecnica, non nello slogan di copertina.</p>
+      </div>
+      <div class="value reveal" style="transition-delay:.1s">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4 4-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <h4>Cantieri <em>aperti alle donne</em>.</h4>
+        <p>Selezioniamo le maestranze anche fra le donne. Spazio, formazione, contratti regolari. La casa la cambia chi sa metterci le mani — qualunque sia il suo nome.</p>
+      </div>
+      <div class="value reveal" style="transition-delay:.2s">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+        </div>
+        <h4>Un unico <em>referente</em>.</h4>
+        <p>Una sola firma sul preventivo, una sola persona da chiamare. Niente rimpalli fra arredatore, impresa edile e fornitori. Ci pensiamo noi, tutti i giorni.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="section" style="padding-top:40px; padding-bottom:0">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <img src="assets/project-bath-green.jpg" alt="Dettaglio bagno · marmo verde" />
+      <div class="cta-banner-inner">
+        <div class="section-tag" style="margin-bottom:8px"><span class="bar"></span>Sopralluogo gratuito · Roma</div>
+        <h2>Raccontaci il tuo <em>spazio.</em></h2>
+        <p>Mandaci due righe e qualche foto. Ti ricontattiamo entro 24 ore con un primo riscontro — e, se vuoi, fissiamo il sopralluogo a Roma o provincia. Senza impegno.</p>
+        <div class="cta-actions">
+          <a href="mailto:Ladyliziasrl@gmail.com" class="btn btn-primary">
+            Scrivici ora
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#contatti" class="btn btn-ghost">Tutti i contatti</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATTI ============ -->
+<section class="section" id="contatti">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="bar"></span>Contatti</div>
+      <h2 class="section-title">Tre modi per <em>iniziare.</em></h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </div>
+        <div class="lbl">— Email diretta</div>
+        <h3>Scrivici una <em>mail</em></h3>
+        <div class="val">Ladyliziasrl@gmail.com</div>
+        <div class="hint">Risposta entro 24 ore lavorative</div>
+        <a class="link" href="mailto:Ladyliziasrl@gmail.com">
+          Apri il client mail
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="contact-card reveal" style="transition-delay:.08s">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+        </div>
+        <div class="lbl">— Social</div>
+        <h3>Seguici, <em>ispirati</em></h3>
+        <div class="val">@Ladylizia · 6.445 follower</div>
+        <div class="hint">Reels settimanali dei cantieri in corso</div>
+        <a class="link" href="#">
+          Apri profilo Instagram
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="contact-card reveal" style="transition-delay:.16s">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        </div>
+        <div class="lbl">— Studio</div>
+        <h3>Vienici a <em>trovare</em></h3>
+        <div class="val">Roma · Italia</div>
+        <div class="hint">Studio &amp; cantieri operativi in tutto il Lazio</div>
+        <a class="link" href="#">
+          Apri in mappa
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-mega reveal"><em>lady</em>lizia.</div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <div class="brand-logo"><img src="assets/logo-mark.jpg" alt="LadyLizia" /></div>
+          <div class="brand-name"><em>lady</em><b>lizia</b></div>
+        </a>
+        <p>Interior design e ristrutturazioni chiavi in mano a Roma. Cantieri aperti alle donne, materiali ecosostenibili, stile italiano. Trasformiamo i tuoi spazi in emozioni.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#servizi">Servizi</a></li>
+          <li><a href="#progetti">Progetti</a></li>
+          <li><a href="#processo">Processo</a></li>
+          <li><a href="#chi-siamo">Chi Siamo</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contatti</h5>
+        <ul>
+          <li><a href="mailto:Ladyliziasrl@gmail.com">Ladyliziasrl@gmail.com</a></li>
+          <li><a href="#">Roma · Italia</a></li>
+          <li><a href="#contatti">Richiedi preventivo</a></li>
+          <li><a href="#contatti">Sopralluogo gratuito</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Social</h5>
+        <ul>
+          <li><a href="#">Instagram · @Ladylizia</a></li>
+          <li><a href="#">Facebook · Ladylizia</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="mono">© 2026 LadyLizia S.r.l. · P.IVA da inserire · Roma, Italia</div>
+      <div class="socials">
+        <a class="social" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a class="social" href="mailto:Ladyliziasrl@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
