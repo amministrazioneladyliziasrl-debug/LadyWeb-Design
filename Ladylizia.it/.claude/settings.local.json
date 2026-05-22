@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"c:\\\\Users\\\\dario\\\\Desktop\\\\LadyWeb-main\" && ls Ladylizia.it/)",
+      "Read(//c/Users/dario/Desktop/LadyWeb-main/**)"
+    ]
+  }
+}
