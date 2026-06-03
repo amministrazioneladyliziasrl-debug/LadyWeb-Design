@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contatti — Ladylizia · Scrivici</title>
+<meta name="description" content="Scrivi a Ladylizia: descrivi il tuo progetto e ti rispondiamo entro 24 ore. Studio a Roma, Via Giovanni Pittaluga 54." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        hsl(220 22% 8%);
+    --bg-2:      hsl(220 24% 6%);
+    --fg:        hsl(30 22% 94%);
+    --fg-mute:   hsl(30 14% 72%);
+    --fg-dim:    hsl(30 8% 52%);
+    --primary:   hsl(18 90% 62%);
+    --secondary: hsl(320 50% 55%);
+    --accent:    hsl(35 90% 60%);
+    --border:    hsl(30 14% 72% / .14);
+    --border-strong: hsl(30 14% 72% / .28);
+    --grad-brand: linear-gradient(135deg, hsl(320 50% 55%), hsl(18 90% 62%) 55%, hsl(35 90% 60%));
+    --display: 'Fraunces', Georgia, serif;
+    --text: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--text); background: var(--bg); color: var(--fg);
+    -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.55; font-size: 16px;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(50% 30% at 12% 0%, hsl(320 50% 55% / .1), transparent 65%),
+      radial-gradient(45% 30% at 92% 8%, hsl(35 90% 60% / .08), transparent 65%);
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .05; mix-blend-mode: overlay;
+  }
+
+  h1,h2,h3,h4 { font-family: var(--display); font-weight: 300; letter-spacing: -0.025em; margin: 0; line-height: 1.0; }
+  h1 em, h2 em, h3 em, h4 em { font-style: italic; font-variation-settings: "opsz" 144; font-weight: 300; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 36px; position: relative; z-index: 1; }
+  .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); }
+  .grad-text { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 16px 26px; border-radius: 999px;
+    font-family: var(--text); font-weight: 500; font-size: 14px;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), background .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--grad-brand); color: #1a0f0a; font-weight: 600; box-shadow: none; border: none; padding: 17px 27px; }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 50px -12px hsl(18 90% 62% / .55); }
+  .btn-line { background: transparent; color: var(--fg); border-color: var(--border-strong); }
+  .btn-line:hover { border-color: var(--accent); color: var(--accent); }
+  .arrow { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: transform .3s ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: hsl(220 24% 6% / .55);
+    backdrop-filter: saturate(160%) blur(20px); -webkit-backdrop-filter: saturate(160%) blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-logo { width: 44px; height: 44px; border-radius: 12px; overflow: hidden; background: var(--bg-2); border: 1px solid hsl(35 90% 60% / .2); }
+  .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+  .brand-name { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 22px; }
+  .brand-name b { font-weight: 500; font-style: normal; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-link { font-size: 13.5px; color: var(--fg-mute); position: relative; padding: 4px 0; transition: color .25s ease; }
+  .nav-link.active { color: var(--fg); }
+  .nav-link.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--grad-brand); }
+  .nav-link:hover { color: var(--fg); }
+
+  /* PAGE HEAD */
+  .page-head {
+    padding: 160px 0 72px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .section-tag .bar { display: block; width: 28px; height: 1px; background: var(--accent); }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg-mute); padding: 10px 18px; border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    transition: color .3s ease, border-color .3s ease, transform .3s ease;
+    margin-bottom: 36px;
+  }
+  .back-btn:hover { color: var(--accent); border-color: var(--accent); transform: translateX(-4px); }
+  .back-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* CONTATTI LAYOUT */
+  .contatti-body {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 100px;
+    padding: 80px 0 100px;
+    align-items: start;
+  }
+
+  /* FORM BOX */
+  .form-box {
+    background: hsl(220 24% 9% / .8);
+    border: 1px solid var(--border-strong);
+    border-radius: 24px;
+    padding: 48px;
+  }
+  .form-box h2 { font-size: clamp(30px, 3.2vw, 48px); margin-bottom: 12px; }
+  .form-box > p { color: var(--fg-mute); font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+  .form-box > p a { color: var(--accent); }
+  .form-box > p a:hover { text-decoration: underline; }
+
+  .cta-form { display: flex; flex-direction: column; gap: 10px; }
+  .cta-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cta-form input, .cta-form textarea {
+    background: hsl(220 24% 5% / .8); border: 1px solid hsl(220 18% 24%);
+    border-radius: 10px; padding: 14px 18px;
+    color: var(--fg); font-family: var(--text); font-size: 14.5px;
+    outline: none; width: 100%; box-sizing: border-box;
+    transition: border-color .25s ease, background .25s ease;
+  }
+  .cta-form input:focus, .cta-form textarea:focus { border-color: var(--accent); background: hsl(220 24% 7%); }
+  .cta-form input::placeholder, .cta-form textarea::placeholder { color: hsl(220 12% 40%); }
+  .cta-form textarea { resize: none; min-height: 110px; }
+  .cta-form-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
+  .cta-form-note { font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: hsl(220 12% 40%); line-height: 1.7; }
+  .cta-form-note a { color: var(--accent); text-decoration: none; }
+  .cta-form-note a:hover { text-decoration: underline; }
+  .cta-form-ok { display: none; padding: 20px 24px; background: hsl(145 35% 10%); border: 1px solid hsl(145 35% 20%); border-radius: 12px; color: hsl(145 50% 65%); font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; margin-top: 16px; }
+
+  /* INFO COLUMN */
+  .contatti-info { padding-top: 8px; }
+  .info-block { margin-bottom: 40px; }
+  .info-block h3 { font-size: clamp(20px, 2vw, 28px); margin-bottom: 8px; }
+  .info-block h3 em { font-style: italic; }
+  .info-block p { color: var(--fg-mute); font-size: 15px; line-height: 1.65; }
+  .info-block .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+  .info-divider { height: 1px; background: var(--border); margin: 40px 0; }
+  .calendly-box {
+    background: hsl(220 24% 9% / .8); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px;
+  }
+  .calendly-box h4 { font-size: 20px; margin-bottom: 8px; }
+  .calendly-box h4 em { font-style: italic; }
+  .calendly-box p { color: var(--fg-mute); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+  .calendly-box .badge-paid {
+    display: inline-block; font-family: var(--mono); font-size: 9.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid hsl(35 90% 60% / .3);
+    border-radius: 999px; padding: 4px 12px; margin-bottom: 16px;
+  }
+
+  /* CONTACT ROWS */
+  .contact-section { border-top: 1px solid var(--border); padding-bottom: 80px; }
+  .contact-section-head { padding: 64px 0 0; margin-bottom: 0; }
+  .contact-section-head h2 { font-size: clamp(32px, 4vw, 56px); }
+
+  .contact-list { border-top: 1px solid var(--border); margin-top: 48px; }
+  .contact-row {
+    display: grid; grid-template-columns: 80px 1.3fr 1.8fr 200px;
+    gap: 48px; align-items: center; padding: 44px 0;
+    border-bottom: 1px solid var(--border); position: relative;
+    transition: padding .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .contact-row::before {
+    content: ""; position: absolute; left: 0; top: 0;
+    width: 0; height: 1px; background: var(--grad-brand);
+    transition: width .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .contact-row:hover::before { width: 100%; }
+  .contact-row:hover { padding-left: 24px; padding-right: 24px; }
+  .contact-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 1px solid var(--border-strong); display: grid; place-items: center;
+    transition: border-color .4s ease, transform .4s ease;
+  }
+  .contact-icon svg { width: 22px; height: 22px; stroke: var(--fg-mute); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke .4s ease; }
+  .contact-row:hover .contact-icon { border-color: var(--accent); transform: rotate(-6deg) scale(1.05); }
+  .contact-row:hover .contact-icon svg { stroke: var(--accent); }
+  .contact-label h3 { font-family: var(--display); font-size: clamp(24px, 2.4vw, 36px); font-weight: 300; line-height: 1; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+  .contact-row:hover .contact-label h3 { transform: translateX(8px); }
+  .contact-label h3 em { font-style: italic; }
+  .contact-label .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); margin-top: 10px; }
+  .contact-detail { font-size: 15px; color: var(--fg); line-height: 1.5; }
+  .contact-detail .hint { color: var(--fg-dim); font-size: 13px; margin-top: 6px; }
+  .contact-cta {
+    justify-self: end; display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg); padding: 14px 0; position: relative;
+  }
+  .contact-cta::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; }
+  .contact-cta svg { width: 18px; height: 18px; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+  .contact-row:hover .contact-cta { color: var(--accent); }
+  .contact-row:hover .contact-cta svg { transform: translateX(8px) rotate(-45deg); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 48px 0 32px; }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 32px; flex-wrap: wrap; gap: 24px; }
+  .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13.5px; color: var(--fg-mute); transition: color .2s ease; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 16px; }
+  .socials { display: flex; gap: 10px; }
+  .social { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-strong); display: grid; place-items: center; transition: border-color .25s ease, color .25s ease; color: var(--fg-mute); }
+  .social svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .social:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HAMBURGER / MOBILE MENU */
+  .hamburger { display: none; width: 42px; height: 42px; border-radius: 999px; border: 1px solid var(--border-strong); background: transparent; cursor: pointer; flex-shrink: 0; }
+  .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--fg); margin: 4px auto; }
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 150;
+    background: hsl(220 24% 5% / .97); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    display: flex; flex-direction: column; padding: 96px 36px 48px;
+    transform: translateX(100%); transition: transform .45s cubic-bezier(.2,.7,.2,1); overflow-y: auto;
+  }
+  .mobile-menu.open { transform: none; }
+  .mobile-menu .m-link {
+    display: block; font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 36px; line-height: 1.15; letter-spacing: -0.02em;
+    color: var(--fg-mute); padding: 16px 0; border-bottom: 1px solid var(--border);
+    transition: color .3s ease, transform .3s ease; font-variation-settings: "opsz" 144;
+  }
+  .mobile-menu .m-link:last-of-type { border-bottom: none; }
+  .mobile-menu .m-link:hover { color: var(--fg); transform: translateX(8px); }
+  .mobile-menu .m-cta { margin-top: 36px; align-self: flex-start; }
+  .mobile-close {
+    position: fixed; top: 22px; right: 22px; z-index: 151;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: hsl(220 22% 14%); border: 1px solid var(--border-strong);
+    display: none; place-items: center; cursor: pointer;
+    transition: transform .4s ease, border-color .3s ease;
+  }
+  .mobile-close.visible { display: grid; }
+  .mobile-close:hover { transform: rotate(90deg); border-color: var(--accent); }
+  .mobile-close svg { width: 16px; height: 16px; stroke: var(--fg); fill: none; stroke-width: 1.6; stroke-linecap: round; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .contact-row { grid-template-columns: 60px 1.2fr 1.6fr; }
+    .contact-cta { display: none; }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .contatti-body { grid-template-columns: 1fr; gap: 52px; padding: 48px 0 64px; }
+    .form-box { padding: 28px 20px; }
+    .cta-form .form-row { grid-template-columns: 1fr; }
+    .contact-row { grid-template-columns: 1fr; gap: 14px; padding: 32px 0; }
+    .contact-row:hover { padding-left: 0; padding-right: 0; }
+    .contact-cta { display: none; }
+    .footer-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-logo"><img src="assets/logo-mark.jpg" alt="Ladylizia mark" /></div>
+      <div class="brand-name"><em>lady</em><b>lizia</b></div>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#servizi">Servizi</a>
+      <a class="nav-link" href="progetti.html">Progetti</a>
+      <a class="nav-link" href="index.html#processo">Processo</a>
+      <a class="nav-link" href="index.html#chi-siamo">Chi Siamo</a>
+      <a class="nav-link active" href="contatti.html">Contatti</a>
+    </div>
+    <div class="nav-cta" style="display:flex;align-items:center;gap:14px;">
+      <a href="https://calendly.com/prenota_una_consulenza" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Prenota una consulenza
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<button class="mobile-close" id="mobile-close" aria-label="Chiudi menu">
+  <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+</button>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="index.html#servizi">Servizi</a>
+  <a class="m-link" href="progetti.html">Progetti</a>
+  <a class="m-link" href="index.html#processo">Processo</a>
+  <a class="m-link" href="index.html#chi-siamo">Chi Siamo</a>
+  <a class="m-link" href="contatti.html">Contatti</a>
+  <a href="https://calendly.com/prenota_una_consulenza" target="_blank" rel="noopener noreferrer" class="btn btn-primary m-cta">
+    Prenota una consulenza
+    <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</div>
+
+<!-- PAGE HEAD -->
+<header class="page-head">
+  <div class="container">
+    <a href="index.html" class="back-btn">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Torna alla home
+    </a>
+    <div class="section-tag"><span class="bar"></span>Contatti · Prima risposta gratuita</div>
+    <h1>Scrivici. Rispondiamo<br/>entro <em>24 ore.</em></h1>
+  </div>
+</header>
+
+<!-- CORPO PRINCIPALE -->
+<div class="container">
+  <div class="contatti-body">
+
+    <!-- FORM -->
+    <div class="form-box reveal">
+      <h2>Raccontaci il tuo <em>spazio.</em></h2>
+      <p>Descrivi in breve il progetto — ti rispondiamo entro 24 ore. Per una consulenza approfondita puoi <a href="https://calendly.com/prenota_una_consulenza" target="_blank" rel="noopener noreferrer">prenotare una call</a> (servizio a pagamento).</p>
+      <form class="cta-form" id="contatti-form" action="https://formspree.io/f/mjgzqzjo" method="POST">
+        <div class="form-row">
+          <input type="text"  name="nome"     placeholder="Nome e cognome" required autocomplete="name" />
+          <input type="email" name="email"    placeholder="Email"          required autocomplete="email" />
+        </div>
+        <input type="tel" name="telefono" placeholder="Telefono (opzionale)" autocomplete="tel" />
+        <textarea name="progetto" rows="5"
+                  placeholder="Descrivi brevemente il tuo spazio e cosa vorresti cambiare…"
+                  required></textarea>
+        <div class="cta-form-foot">
+          <span class="cta-form-note">
+            Prima risposta gratuita · entro 24h<br/>
+            Consulenza approfondita a pagamento —
+            <a href="https://calendly.com/prenota_una_consulenza" target="_blank" rel="noopener noreferrer">prenota qui</a>
+          </span>
+          <button type="submit" class="btn btn-primary">
+            Invia richiesta
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </form>
+      <div class="cta-form-ok" id="contatti-form-ok">✓ Messaggio ricevuto! Ti risponderemo entro 24 ore.</div>
+    </div>
+
+    <!-- INFO + CALENDLY -->
+    <div class="contatti-info reveal" style="transition-delay:.1s">
+      <div class="info-block">
+        <span class="lbl">Cosa succede dopo?</span>
+        <h3>Leggiamo ogni <em>richiesta</em>.</h3>
+        <p>Bianca risponde personalmente a ogni messaggio entro 24 ore. Se il progetto è compatibile con la nostra agenda, ti contatterà per discutere i passi successivi.</p>
+      </div>
+      <div class="info-divider"></div>
+      <div class="info-block">
+        <span class="lbl">Studio</span>
+        <h3>Via Giovanni <em>Pittaluga</em> 54</h3>
+        <p>00159 · Roma<br/>Sopralluoghi su appuntamento in tutto il Lazio.</p>
+      </div>
+      <div class="info-divider"></div>
+      <div class="calendly-box">
+        <span class="badge-paid">Servizio a pagamento</span>
+        <h4>Vuoi una consulenza <em>approfondita?</em></h4>
+        <p>Prenota direttamente una call con Bianca per discutere il tuo progetto nel dettaglio — tempi, budget, materiali.</p>
+        <a href="https://calendly.com/prenota_una_consulenza" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Prenota una call
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT ROWS -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-section-head reveal">
+      <h2>Altri modi per <em>trovarci.</em></h2>
+    </div>
+    <div class="contact-list">
+      <a href="mailto:amministrazioneladyliziasrl@gmail.com?subject=Richiesta%20informazioni%20%E2%80%94%20Ladylizia&body=Ciao%20Bianca%2C%0D%0A%0D%0AMi%20chiamo%20[Nome]%20e%20vi%20contatto%20per%3A%0D%0A%0D%0A" class="contact-row reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </div>
+        <div class="contact-label">
+          <h3>Scrivici una <em>mail</em></h3>
+          <div class="lbl">— Risposta entro 24h</div>
+        </div>
+        <div class="contact-detail">
+          amministrazioneladyliziasrl@gmail.com
+          <div class="hint">Per preventivi, sopralluoghi o anche solo un'idea su cui ragionare insieme.</div>
+        </div>
+        <div class="contact-cta">
+          Apri client mail
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/ladylizia/" target="_blank" rel="noopener noreferrer" class="contact-row reveal" style="transition-delay:.06s">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></svg>
+        </div>
+        <div class="contact-label">
+          <h3>Seguici su <em>Instagram</em></h3>
+          <div class="lbl">— @Ladylizia</div>
+        </div>
+        <div class="contact-detail">
+          @Ladylizia
+          <div class="hint">Reels settimanali dei cantieri in corso. Storie, behind-the-scenes, dirette dai progetti.</div>
+        </div>
+        <div class="contact-cta">
+          Apri profilo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+      <a href="https://www.facebook.com/Ladylizia" target="_blank" rel="noopener noreferrer" class="contact-row reveal" style="transition-delay:.12s">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <div class="contact-label">
+          <h3>Trovaci su <em>Facebook</em></h3>
+          <div class="lbl">— Ladylizia</div>
+        </div>
+        <div class="contact-detail">
+          Ladylizia
+          <div class="hint">Album dei progetti completi, recensioni dei clienti, eventi e open-house.</div>
+        </div>
+        <div class="contact-cta">
+          Apri pagina
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Ladylizia+Srl+Via+Giovanni+Pittaluga+54+00159+Roma" target="_blank" rel="noopener noreferrer" class="contact-row reveal" style="transition-delay:.18s">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        </div>
+        <div class="contact-label">
+          <h3>Vienici a <em>trovare</em></h3>
+          <div class="lbl">— Studio &amp; cantiere</div>
+        </div>
+        <div class="contact-detail">
+          Via Giovanni Pittaluga 54 · 00159 · Roma
+          <div class="hint">Studio e cantieri operativi in tutto il Lazio. Sopralluoghi su appuntamento.</div>
+        </div>
+        <div class="contact-cta">
+          Apri in mappa
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <a href="index.html" class="brand">
+        <div class="brand-logo"><img src="assets/logo-mark.jpg" alt="Ladylizia" /></div>
+        <div class="brand-name"><em>lady</em><b>lizia</b></div>
+      </a>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#servizi">Servizi</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="index.html#chi-siamo">Chi Siamo</a>
+        <a href="contatti.html">Contatti</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="mono" style="display:flex;flex-direction:column;gap:4px;">
+        <span>© 2026 Ladylizia S.r.l. · Via Giovanni Pittaluga 54 · 00159 · Roma</span>
+        <span>P.IVA 16883751006</span>
+      </div>
+      <div class="socials">
+        <a class="social" href="https://www.instagram.com/ladylizia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social" href="https://www.facebook.com/Ladylizia" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a class="social" href="mailto:amministrazioneladyliziasrl@gmail.com?subject=Richiesta%20informazioni%20%E2%80%94%20Ladylizia&body=Ciao%20Bianca%2C%0D%0A%0D%0AMi%20chiamo%20[Nome]%20e%20vi%20contatto%20per%3A%0D%0A%0D%0A" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </a>
+        <a class="social" href="https://www.google.com/maps/search/?api=1&query=Ladylizia+Srl+Via+Giovanni+Pittaluga+54+00159+Roma" target="_blank" rel="noopener noreferrer" aria-label="Maps">
+          <svg viewBox="0 0 24 24"><path d="M12 22s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Form AJAX
+  (function() {
+    const form = document.getElementById('contatti-form');
+    const ok   = document.getElementById('contatti-form-ok');
+    if (!form || !ok) return;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const orig = btn.innerHTML;
+      btn.disabled = true; btn.textContent = 'Invio…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (res.ok) { form.style.display = 'none'; ok.style.display = 'block'; }
+        else { btn.disabled = false; btn.innerHTML = orig; }
+      } catch { btn.disabled = false; btn.innerHTML = orig; }
+    });
+  })();
+
+  // Mobile menu
+  const mobileMenu  = document.getElementById('mobile-menu');
+  const mobileClose = document.getElementById('mobile-close');
+  const hamburger   = document.querySelector('.hamburger');
+  function openMenu()  { mobileMenu.classList.add('open'); mobileClose.classList.add('visible'); mobileMenu.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('open'); mobileClose.classList.remove('visible'); mobileMenu.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  hamburger.addEventListener('click', openMenu);
+  mobileClose.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('.m-link, .m-cta').forEach(el => el.addEventListener('click', closeMenu));
+</script>
+</body>
+</html>
