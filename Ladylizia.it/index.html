@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 <style>
   :root {
     --bg:        hsl(220 22% 8%);
@@ -1258,16 +1260,114 @@
       </a>
     </div>
 
-    <article class="project-hero reveal" data-project="parioli">
-      <img src="assets/cantieri/living/project-dining.jpg" alt="Maison Parioli · Sala da pranzo" />
-      <div class="project-count"><span>N° 01</span><span class="gallery-pill">+5 foto</span></div>
-      <div class="project-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="project-meta">
-        <span class="project-cat">Featured · Sala da pranzo</span>
-        <h3>Sala da <em>pranzo</em></h3>
-        <div class="project-extra"><span>...</span></div>
+    <div class="panorama-hero reveal">
+      <div class="panorama-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><ellipse cx="12" cy="12" rx="4" ry="10"/><path d="M2 12h20"/></svg>
+        Vista 360°
       </div>
-    </article>
+      <div id="panorama-viewer"></div>
+      <div class="panorama-meta">
+        <span class="project-cat">Featured · Tour immersivo</span>
+        <h3>Esplora lo <em>spazio</em></h3>
+        <p class="panorama-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+          Trascina per esplorare · Scorri per zoomare
+        </p>
+      </div>
+    </div>
+
+    <style>
+      .panorama-hero {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        background: var(--bg-2);
+        border: 1px solid hsl(30 20% 20% / .4);
+      }
+      #panorama-viewer {
+        width: 100%;
+        height: 560px;
+      }
+      @media (max-width: 768px) {
+        #panorama-viewer { height: 320px; }
+      }
+      .panorama-badge {
+        position: absolute;
+        top: 1.2rem;
+        left: 1.2rem;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: .45rem;
+        background: hsl(220 22% 8% / .75);
+        backdrop-filter: blur(10px);
+        border: 1px solid hsl(30 60% 55% / .4);
+        color: var(--primary, hsl(30 90% 60%));
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .72rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        padding: .4rem .85rem .4rem .65rem;
+        border-radius: 100px;
+      }
+      .panorama-badge svg { width: 14px; height: 14px; }
+      .panorama-meta {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        padding: 2.5rem 2rem 1.6rem;
+        background: linear-gradient(to top, hsl(220 22% 6% / .92) 0%, transparent 100%);
+        pointer-events: none;
+      }
+      .panorama-meta .project-cat {
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .68rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--primary, hsl(30 90% 60%));
+        margin-bottom: .5rem;
+      }
+      .panorama-meta h3 {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        font-weight: 400;
+        color: var(--fg);
+        margin: 0 0 .6rem;
+        line-height: 1.1;
+      }
+      .panorama-hint {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+        font-size: .72rem;
+        color: hsl(30 10% 70%);
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+      }
+      /* hide pannellum branding */
+      .pnlm-about-msg, .pnlm-author { display: none !important; }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        pannellum.viewer('panorama-viewer', {
+          type: 'equirectangular',
+          panorama: 'assets/panorama-360.png',
+          autoLoad: true,
+          autoRotate: -1.5,
+          autoRotateInactivityDelay: 2000,
+          compass: false,
+          showZoomCtrl: false,
+          showFullscreenCtrl: true,
+          mouseZoom: true,
+          hfov: 100,
+          pitch: 0,
+          yaw: 0,
+          strings: { loadButtonLabel: 'Carica il tour 360°', loadingLabel: 'Caricamento…', bylineLabel: '' }
+        });
+      });
+    </script>
 
     <div class="grid-6">
       <article class="project reveal" data-project="kitchen">
