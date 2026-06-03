@@ -81,8 +81,8 @@
   .brand { display: flex; align-items: center; gap: 14px; }
   .brand-logo { width: 44px; height: 44px; border-radius: 12px; overflow: hidden; background: var(--bg-2); border: 1px solid hsl(35 90% 60% / .2); }
   .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
-  .brand-name { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 22px; }
-  .brand-name b { font-weight: 500; font-style: normal; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .brand-name { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 22px; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .brand-name b { font-weight: 500; font-style: normal; }
   .nav-links { display: flex; align-items: center; gap: 36px; }
   .nav-link { font-size: 13.5px; color: var(--fg-mute); position: relative; padding: 4px 0; transition: color .25s ease; }
   .nav-link.active { color: var(--fg); }
@@ -331,11 +331,12 @@
     display: inline-flex; align-items: center; gap: 10px;
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--fg-mute); padding: 10px 18px; border-radius: 999px;
-    border: 1px solid var(--border-strong);
-    transition: color .3s ease, border-color .3s ease, transform .3s ease;
+    background: linear-gradient(hsl(220 24% 7%), hsl(220 24% 7%)) padding-box, var(--grad-brand) border-box;
+    border: 1.5px solid transparent;
+    transition: color .3s ease, transform .3s ease, box-shadow .3s ease;
     margin-bottom: 28px;
   }
-  .back-btn:hover { color: var(--accent); border-color: var(--accent); transform: translateX(-4px); }
+  .back-btn:hover { color: var(--fg); transform: translateX(-4px); box-shadow: 0 4px 20px -6px hsl(18 90% 62% / .3); }
   .back-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
   /* ==== MOBILE MENU ==== */
@@ -397,7 +398,7 @@
         Prenota una consulenza
         <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="hamburger" aria-label="Menu"></button>
     </div>
   </div>
 </nav>
@@ -474,8 +475,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Sala da pranzo · Residenziale</span>
-          <h3>Maison <em>Parioli</em></h3>
-          <div class="card-extra"><span>180 m²</span><span>Marmo &amp; cuoio</span><span>2025</span></div>
+          <h3>Sala da <em>pranzo</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -488,8 +489,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Cucina · Custom</span>
-          <h3>Cucina <em>Quercia</em></h3>
-          <div class="card-extra"><span>32 m²</span><span>Rovere &amp; marmo</span></div>
+          <h3>Cucina <em>su misura</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -502,8 +503,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Living · Classico</span>
-          <h3>Suite <em>Bouclé</em></h3>
-          <div class="card-extra"><span>54 m²</span><span>Calacatta</span></div>
+          <h3>Soggiorno <em>classico</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -516,8 +517,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Bagno · Wellness</span>
-          <h3>Bagno <em>Smeraldo</em></h3>
-          <div class="card-extra"><span>14 m²</span><span>Marmo verde &amp; ottone</span></div>
+          <h3><em>Bagno</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -530,8 +531,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Loft · Lifestyle</span>
-          <h3>Lounge <em>Industriale</em></h3>
-          <div class="card-extra"><span>46 m²</span><span>Mattone &amp; metallo</span></div>
+          <h3>Loft <em>lifestyle</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -544,8 +545,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Bagno · Botanico</span>
-          <h3>Bagno <em>Tropicale</em></h3>
-          <div class="card-extra"><span>9 m²</span><span>Wallpaper custom</span></div>
+          <h3><em>Bagno</em> botanico</h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -558,8 +559,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Cucina · Open space</span>
-          <h3>Cucina <em>Aurelia</em></h3>
-          <div class="card-extra"><span>28 m²</span><span>Roma · 2024</span></div>
+          <h3>Cucina <em>open space</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -572,8 +573,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Bagno · Master</span>
-          <h3>Master <em>Botanica</em></h3>
-          <div class="card-extra"><span>11 m²</span><span>Wallpaper &amp; pietra</span></div>
+          <h3>Bagno <em>master</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -586,8 +587,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Living · Galleria</span>
-          <h3>Salotto <em>Galleria</em></h3>
-          <div class="card-extra"><span>62 m²</span><span>Arte contemporanea</span></div>
+          <h3>Living <em>su misura</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -600,8 +601,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Sala giochi · Lifestyle</span>
-          <h3>Pool <em>Lounge</em></h3>
-          <div class="card-extra"><span>52 m²</span><span>Classe A+</span></div>
+          <h3>Sala <em>relax</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -614,8 +615,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Bagno · Wellness</span>
-          <h3>Bagno <em>Onyx</em></h3>
-          <div class="card-extra"><span>16 m²</span><span>Pietra naturale</span></div>
+          <h3><em>Bagno</em> wellness</h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
@@ -628,8 +629,8 @@
         </div>
         <div class="card-meta">
           <span class="card-cat">Living · Eco-classico</span>
-          <h3>Maison <em>Verde</em></h3>
-          <div class="card-extra"><span>140 m²</span><span>Classe A+ · Materiali bio</span></div>
+          <h3>Soggiorno <em>green</em></h3>
+          <div class="card-extra"><span>...</span></div>
         </div>
         <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
