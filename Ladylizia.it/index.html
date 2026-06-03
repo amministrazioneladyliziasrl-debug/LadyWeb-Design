@@ -161,8 +161,8 @@
   .hero-image-wrap::after {
     content: ""; position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, hsl(220 24% 6% / .4) 0%, transparent 30%, transparent 55%, hsl(220 24% 6% / .82) 100%),
-      linear-gradient(90deg, hsl(220 24% 6% / .5) 0%, transparent 50%);
+      linear-gradient(180deg, hsl(220 24% 6% / .45) 0%, transparent 28%, transparent 45%, hsl(220 24% 6% / .96) 100%),
+      linear-gradient(90deg, hsl(220 24% 6% / .6) 0%, transparent 55%);
   }
 
   .hero-eyebrow {
@@ -183,10 +183,10 @@
 
   .hero-title {
     position: absolute;
-    left: 4%; right: 4%; bottom: 7%;
+    left: 4%; right: 4%; bottom: 9%;
     z-index: 2;
-    font-size: clamp(54px, 9.6vw, 178px);
-    line-height: .92;
+    font-size: clamp(48px, 8.2vw, 148px);
+    line-height: .94;
     font-weight: 300;
     letter-spacing: -0.04em;
     color: var(--fg);
@@ -203,7 +203,7 @@
   @keyframes riseUp { to { transform: none; } }
   .hero-title em {
     font-style: italic; font-variation-settings: "opsz" 144; font-weight: 300;
-    background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent;
+    color: var(--accent);
   }
 
   .hero-meta-row {
