@@ -1364,6 +1364,9 @@
       .pano-fs-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
       /* hide pannellum default controls */
       .pnlm-controls { display: none !important; }
+      /* viewer fullscreen via Pannellum */
+      .pnlm-container { background: #000 !important; }
+      .pnlm-fullscreen #panorama-viewer { height: 100vh !important; }
 
       /* click-to-activate overlay */
       .pano-activate-overlay {
@@ -1398,37 +1401,45 @@
           compass: false,
           showZoomCtrl: false,
           showFullscreenCtrl: false,
-          mouseZoom: false,
+          mouseZoom: true,
           hfov: 100,
           pitch: 0,
           yaw: 0,
           strings: { loadButtonLabel: 'Carica il tour 360°', loadingLabel: 'Caricamento…', bylineLabel: '' }
         });
 
-        // Click-to-activate overlay
         var hero = document.querySelector('.panorama-hero');
+        var panoEl = document.getElementById('panorama-viewer');
+
+        // Click-to-activate overlay — blocca tutti gli eventi finché non si clicca
         var overlay = document.createElement('div');
         overlay.className = 'pano-activate-overlay';
-        overlay.innerHTML = '<span class="pano-hint">Clicca per interagire · Scorri per zoomare</span>';
+        overlay.innerHTML = '<span class="pano-hint">Clicca per interagire · Pinch per zoomare</span>';
         hero.appendChild(overlay);
 
-        overlay.addEventListener('click', function () {
-          overlay.remove();
-          viewer.setOption('mouseZoom', true);
+        // Blocca wheel e touch sull'overlay (non arrivano a Pannellum)
+        overlay.addEventListener('wheel', function(e) { e.stopPropagation(); }, { passive: false });
+        overlay.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: false });
+
+        overlay.addEventListener('click', function() {
+          overlay.style.display = 'none';
         });
 
-        // Bottone fullscreen custom
+        // Ri-mostra overlay se si clicca fuori
+        document.addEventListener('click', function(e) {
+          if (!hero.contains(e.target)) {
+            overlay.style.display = 'flex';
+          }
+        });
+
+        // Bottone fullscreen custom — usa viewer.toggleFullscreen() di Pannellum
         var fsBtn = document.createElement('button');
         fsBtn.className = 'pano-fs-btn';
         fsBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>Schermo intero';
         hero.appendChild(fsBtn);
         fsBtn.addEventListener('click', function(e) {
           e.stopPropagation();
-          if (!document.fullscreenElement) {
-            hero.requestFullscreen && hero.requestFullscreen();
-          } else {
-            document.exitFullscreen && document.exitFullscreen();
-          }
+          viewer.toggleFullscreen();
         });
       });
     </script>
