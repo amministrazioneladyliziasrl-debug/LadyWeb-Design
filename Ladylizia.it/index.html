@@ -1348,8 +1348,22 @@
       }
       /* hide pannellum branding */
       .pnlm-about-msg, .pnlm-author { display: none !important; }
-      /* fullscreen button right side */
-      .pnlm-controls { right: 1rem !important; left: auto !important; top: 1rem !important; }
+      /* custom fullscreen button */
+      .pano-fs-btn {
+        position: absolute; top: 1.2rem; left: 1.2rem; z-index: 10;
+        display: flex; align-items: center; gap: .45rem;
+        background: hsl(220 22% 8% / .75); backdrop-filter: blur(10px);
+        border: 1px solid hsl(30 60% 55% / .4);
+        color: var(--primary, hsl(30 90% 60%));
+        font-family: 'JetBrains Mono', monospace; font-size: .72rem;
+        letter-spacing: .08em; text-transform: uppercase;
+        padding: .4rem .85rem .4rem .65rem; border-radius: 100px;
+        cursor: pointer; transition: background .25s ease, border-color .25s ease;
+      }
+      .pano-fs-btn:hover { background: hsl(220 22% 12% / .9); border-color: hsl(30 60% 55% / .7); }
+      .pano-fs-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+      /* hide pannellum default controls */
+      .pnlm-controls { display: none !important; }
 
       /* click-to-activate overlay */
       .pano-activate-overlay {
@@ -1377,13 +1391,13 @@
       document.addEventListener('DOMContentLoaded', function () {
         var viewer = pannellum.viewer('panorama-viewer', {
           type: 'equirectangular',
-          panorama: 'assets/panorama-360.png',
+          panorama: 'assets/panorama-360.jpg',
           autoLoad: true,
           autoRotate: -1.5,
           autoRotateInactivityDelay: 2000,
           compass: false,
           showZoomCtrl: false,
-          showFullscreenCtrl: true,
+          showFullscreenCtrl: false,
           mouseZoom: false,
           hfov: 100,
           pitch: 0,
@@ -1403,8 +1417,19 @@
           viewer.setOption('mouseZoom', true);
         });
 
-        // Se l'utente clicca fuori, il scroll torna alla pagina naturalmente
-        // perché mouseZoom è false finché non si clicca sul viewer
+        // Bottone fullscreen custom
+        var fsBtn = document.createElement('button');
+        fsBtn.className = 'pano-fs-btn';
+        fsBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>Schermo intero';
+        hero.appendChild(fsBtn);
+        fsBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (!document.fullscreenElement) {
+            hero.requestFullscreen && hero.requestFullscreen();
+          } else {
+            document.exitFullscreen && document.exitFullscreen();
+          }
+        });
       });
     </script>
 
