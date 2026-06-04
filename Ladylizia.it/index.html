@@ -1425,11 +1425,9 @@
           overlay.style.display = 'none';
         });
 
-        // Ri-mostra overlay se si clicca fuori
-        document.addEventListener('click', function(e) {
-          if (!hero.contains(e.target)) {
-            overlay.style.display = 'flex';
-          }
+        // Ri-mostra overlay quando il mouse esce dal viewer
+        hero.addEventListener('mouseleave', function() {
+          overlay.style.display = 'flex';
         });
 
         // Bottone fullscreen custom — usa viewer.toggleFullscreen() di Pannellum
