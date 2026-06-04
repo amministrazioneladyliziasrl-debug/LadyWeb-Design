@@ -1296,7 +1296,7 @@
       .panorama-badge {
         position: absolute;
         top: 1.2rem;
-        left: 1.2rem;
+        right: 1.2rem;
         z-index: 10;
         display: flex;
         align-items: center;
@@ -1348,11 +1348,34 @@
       }
       /* hide pannellum branding */
       .pnlm-about-msg, .pnlm-author { display: none !important; }
+      /* fullscreen button right side */
+      .pnlm-controls { right: 1rem !important; left: auto !important; top: 1rem !important; }
+
+      /* click-to-activate overlay */
+      .pano-activate-overlay {
+        position: absolute; inset: 0; z-index: 15;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        background: transparent;
+      }
+      .pano-activate-overlay .pano-hint {
+        background: hsl(220 22% 6% / .7);
+        backdrop-filter: blur(8px);
+        color: var(--fg-mute);
+        font-family: var(--mono); font-size: 11px;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        padding: 10px 20px; border-radius: 999px;
+        border: 1px solid var(--border-strong);
+        pointer-events: none;
+        transition: opacity .3s ease;
+      }
+      .panorama-hero:hover .pano-activate-overlay .pano-hint { opacity: 1; }
+      .pano-activate-overlay .pano-hint { opacity: 0.7; }
     </style>
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        pannellum.viewer('panorama-viewer', {
+        var viewer = pannellum.viewer('panorama-viewer', {
           type: 'equirectangular',
           panorama: 'assets/panorama-360.png',
           autoLoad: true,
@@ -1361,12 +1384,27 @@
           compass: false,
           showZoomCtrl: false,
           showFullscreenCtrl: true,
-          mouseZoom: true,
+          mouseZoom: false,
           hfov: 100,
           pitch: 0,
           yaw: 0,
           strings: { loadButtonLabel: 'Carica il tour 360°', loadingLabel: 'Caricamento…', bylineLabel: '' }
         });
+
+        // Click-to-activate overlay
+        var hero = document.querySelector('.panorama-hero');
+        var overlay = document.createElement('div');
+        overlay.className = 'pano-activate-overlay';
+        overlay.innerHTML = '<span class="pano-hint">Clicca per interagire · Scorri per zoomare</span>';
+        hero.appendChild(overlay);
+
+        overlay.addEventListener('click', function () {
+          overlay.remove();
+          viewer.setOption('mouseZoom', true);
+        });
+
+        // Se l'utente clicca fuori, il scroll torna alla pagina naturalmente
+        // perché mouseZoom è false finché non si clicca sul viewer
       });
     </script>
 
